@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>tlogs</id>
+    <version>1.1.4</version>
+    <title>Text Log Writer</title>
+    <authors>ro.medina</authors>
+    <owners>ro.medina</owners>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This library writes to a text file with some relevant metadata.</description>
+    <releaseNotes>Added git repo</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>log text txt textfile trace logs</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1"/>
+    </dependencies>
+    <repository type="git" url="https://github.com/rmed1na/MyNugets/tree/master/TextLogs"/>
+  </metadata>
+</package>
