@@ -340,5 +340,5 @@ ASALocalRun/
 healthchecksdb
 
 # Test folders
-TextLogs.UniTest/
+TextLogs.UnitTest/
 mssql.dbman.Tests/
