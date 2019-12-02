@@ -270,5 +270,10 @@ namespace mssql.dbman
             }
             return success;
         }
+
+        private void Print(string message, bool isError = false)
+        {
+
+        }
     }
 }

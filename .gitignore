@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Test folders
+TextLogs.UniTest/
+mssql.dbman.Tests/
