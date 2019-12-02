@@ -342,3 +342,4 @@ healthchecksdb
 # Test folders
 TextLogs.UnitTest/
 mssql.dbman.Tests/
+nuget.exe
