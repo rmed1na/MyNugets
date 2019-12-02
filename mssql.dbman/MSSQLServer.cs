@@ -50,18 +50,11 @@ namespace mssql.dbman
                 conn.ConnectionString = $"Server={server}; Database={database}; User ID={user}; Password={password}";
                 conn.Open();
                 success = true;
-
-                if (writeLogs)
-                    this.log.Write($"Successful connection established with sql client: {conn.ConnectionString}");
+                Print($"Successful connection established with sql client: {conn.ConnectionString}");
             } catch (SqlException ex)
             {
                 success = false;
-
-                if (writeLogs)
-                    this.log.Write($"Sql client connection error: {ex.Message} | {ex.HResult}", true);
-#if DEBUG
-                Debug.Print($"Sql client connection error: {ex.Message} | {ex.HResult}", true);
-#endif
+                Print($"Sql client connection error: {ex.Message} | {ex.HResult}", true);
             }
             finally
             {
@@ -78,26 +71,21 @@ namespace mssql.dbman
             {
                 if (newScope)
                     this.conn.Open();
-#if DEBUG
-                Debug.Print($"Executing sql statement: {query}");
-#endif
-                if (debugMode && writeLogs)
-                    this.log.Write($"Executing sql statement: {query}");
-
+                
                 da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.CommandTimeout = timeout;
                 da.Fill(dt);
                 da.Dispose();
                 da = null;
+
+                if (debugMode)
+                    Print($"Executed sql statement: {query}");
+
                 if (newScope)
                     conn.Close();
             } catch (SqlException ex)
             {
-                if (writeLogs)
-                    this.log.Write($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
-#if DEBUG
-                Debug.Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}");
-#endif
+                Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
             }
             finally
             {
@@ -117,18 +105,12 @@ namespace mssql.dbman
                 command.CommandTimeout = this.timeout;
                 command.ExecuteScalar();
                 success = true;
-                if (debugMode && writeLogs)
-                    this.log.Write($"Executing sql statement: {query}");
-#if DEBUG
-                Debug.Print($"Executing sql statement: {query}");
-#endif
+
+                if (debugMode)
+                    Print($"Executed sql statement: {query}");
             } catch (SqlException ex)
             {
-                if (writeLogs)
-                    this.log.Write($"Sql exception on query execution: {ex.Message} | {ex.HResult} | {ex.LineNumber}");
-#if DEBUG
-                Debug.Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}");
-#endif
+                Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
             }
             finally
             {
@@ -148,19 +130,11 @@ namespace mssql.dbman
                 {
                     if (Convert.ToInt32(GetData($"SELECT COUNT(1) FROM sys.columns WHERE Name=N'{col.ColumnName}' COLLATE Latin1_General_CS_AS AND Object_ID=Object_ID(N'{tableName}')").Rows[0][0].ToString()) == 1)
                     {
-                        if (writeLogs)
-                            log.Write($"  Column {col.ColumnName} - Matched");
-#if DEBUG
-                        Debug.Print($"  Column {col.ColumnName} - Matched");
-#endif
+                        Print($"  Column '{col.ColumnName}' - Matched");
                     }
                     else
                     {
-                        if (writeLogs)
-                            log.Write($"  Column '{col.ColumnName}'. Can't find matching column on destination. Verify.", true);
-#if DEBUG
-                        Debug.Print($"  Column '{col.ColumnName}'. Can't find matching column on destination. Verify.");
-#endif
+                        Print($"  Column '{col.ColumnName}'. Can't find matching pair on destination. Please verify.", true);
                         success = false;
                         break;
                     }
@@ -168,11 +142,7 @@ namespace mssql.dbman
             } catch (Exception ex)
             {
                 success = false;
-                if (writeLogs)
-                    log.Write($"Error checking columns: {ex.Message} | {ex.HResult}", true);
-#if DEBUG
-                Debug.Print($"Error checking columns: {ex.Message} | {ex.HResult}");
-#endif
+                Print($"Error checking columns: {ex.Message} | {ex.HResult}", true);
             }
             return success;
         }
@@ -182,12 +152,7 @@ namespace mssql.dbman
             bool success = false;
             try
             {
-                if (writeLogs)
-                    log.Write($"Checking data types on column matches from table {destinationTable}");
-
-#if DEBUG
-                Debug.Print($"Checking data types on column matches from table {destinationTable}");
-#endif
+                Print($"Checking data types on column matches from table {destinationTable}");
                 DataTable dataTypes = GetData($"SELECT TOP 0 * FROM {destinationTable} WITH(NOLOCK)");
                 foreach (DataColumn colA in dt.Columns)
                 {
@@ -196,14 +161,12 @@ namespace mssql.dbman
                             if (colA.DataType == colB.DataType)
                             {
                                 success = true;
-                                if (writeLogs)
-                                    log.Write($"  - Column {colA.ColumnName}: OK");
+                                Print($"  - Column {colA.ColumnName}: OK");
                             }
                             else
                             {
                                 success = false;
-                                if (writeLogs)
-                                    log.Write($"  - Column {colA.ColumnName}: ERROR. The data type ({colA.DataType}) on column '{colA.ColumnName}' doesn't match with column '{colB.ColumnName}' (datatype {colB.DataType})", true);
+                                Print($"  - Column '{colA.ColumnName}': ERROR. The data type ({colA.DataType}) doesn't match with column '{colB.ColumnName}' datatype ({colB.DataType})", true);
                                 break;
                             }
                     if (!success)
@@ -211,11 +174,7 @@ namespace mssql.dbman
                 }
             } catch (Exception ex)
             {
-                if (writeLogs)
-                    log.Write($"Error checking data types of table {destinationTable}: {ex.Message} | {ex.HResult}");
-#if DEBUG
-                Debug.Print($"Error checking data types of table {destinationTable}: {ex.Message} | {ex.HResult}");
-#endif
+                Print($"Error checking data types of table {destinationTable}: {ex.Message} | {ex.HResult}", true);
             }
             return success;
         }
@@ -229,11 +188,7 @@ namespace mssql.dbman
                     if (CheckColumns(dt, destinationTable))
                         if (SetConnection())
                         {
-                            if (writeLogs)
-                                log.Write($"Bulk insert started");
-#if DEBUG
-                            Debug.Print($"Bulk insert started");
-#endif
+                            Print($"Starting bulk insert...");
                             this.conn.Open();
                             using (SqlBulkCopy bcopy = new SqlBulkCopy(conn))
                             {
@@ -252,28 +207,25 @@ namespace mssql.dbman
                                 if (getIdentity)
                                     identity_scope = Convert.ToInt64(GetData($"SELECT ISNULL(SCOPE_IDENTITY(),0) [SCOPE_IDENTITY]", newScope: false).Rows[0][0].ToString());
 
-                                if (writeLogs)
-                                    log.Write($"{dt.Rows.Count} lines copied to destination");
-#if DEBUG
-                                Debug.Print($"{dt.Rows.Count} lines copied to destination");
-#endif
+                                Print($"{dt.Rows.Count} lines copied to destination");
                             }
                             success = true;
                         }
             } catch (Exception ex)
             {
-                if (writeLogs)
-                    log.Write($"Error in bulk insert: {ex.Message} | {ex.HResult}", true);
-#if DEBUG
-                Debug.Print($"Error in bulk insert: {ex.Message} | {ex.HResult}");
-#endif
+                Print($"Error in bulk insert: {ex.Message} | {ex.HResult}", true);
             }
             return success;
         }
 
         private void Print(string message, bool isError = false)
         {
+            if (this.writeLogs)
+                log.Write($"{message}", isError);
 
+#if DEBUG
+            Debug.Print($"{message}");
+#endif
         }
     }
 }
