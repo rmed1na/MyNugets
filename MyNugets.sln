@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mssql.dbman.Tests", "mssql.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xmlman", "xmlman\xmlman.csproj", "{7ECE6137-7161-484C-893C-9D1A233CC4AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xmlman.Tests", "xmlman.Tests\xmlman.Tests.csproj", "{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7ECE6137-7161-484C-893C-9D1A233CC4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ECE6137-7161-484C-893C-9D1A233CC4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ECE6137-7161-484C-893C-9D1A233CC4AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
