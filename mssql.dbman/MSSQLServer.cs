@@ -14,7 +14,6 @@ namespace mssql.dbman
     {
         private SqlConnection conn = new SqlConnection();
         public int timeout { get; set; }
-        private string connectionString;
         public string server { get; set; }
         public string database { get; set; }
         public string user { get; set; }

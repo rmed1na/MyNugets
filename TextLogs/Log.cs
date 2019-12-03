@@ -77,7 +77,6 @@ namespace TextLogs
                 Print($"Log writing error: {ex.Message} | {ex.HResult}", true);
             }
         }
-        
         private void AutoDeleteLogs()
         {
             try
@@ -114,7 +113,6 @@ namespace TextLogs
                 Print($"Log debug error: {ex.Message} | {ex.HResult}", true);
             }
         }
-
         private void Print(string message, bool isError = false)
         {
             Write(message, isError);

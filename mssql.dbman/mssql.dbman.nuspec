@@ -2,17 +2,15 @@
 <package >
   <metadata>
     <id>mssql.dbman</id>
-    <version>1.5.3</version>
+    <version>1.6.4</version>
     <title>Sql Server Data Manager</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This library handles data from Sql Server Databases</description>
-    <releaseNotes>
-    Added new print method.
-    Wraped every write log call on the new print private method.
-    </releaseNotes>
+    <releaseNotes>Removed unused connection string property
+Updated tlogs nuget package version</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>mssql db sqlserver sql data datamanager mssqldb database sqlconsole dbconsole</tags>
     <dependencies>
