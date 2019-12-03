@@ -17,5 +17,6 @@
         <dependency id="tlogs" version="1.3.4"/>
       </group>
     </dependencies>
+    <repository type="git" url="https://github.com/rmed1na/MyNugets/tree/master/xmlman"/>
   </metadata>
 </package>
