@@ -9,8 +9,7 @@
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This library writes to a text file with some relevant metadata.</description>
-    <releaseNotes>Added auto delete functionality depending on days or size of the log files.
-    Added new print debug functionality for debug executions.</releaseNotes>
+    <releaseNotes>.NET Core support</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>log text txt textfile trace logs</tags>
     <dependencies>

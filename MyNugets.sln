@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xmlman", "xmlman\xmlman.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xmlman.Tests", "xmlman.Tests\xmlman.Tests.csproj", "{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailMan", "MailMan\MailMan.csproj", "{BD5B9B8A-6720-4691-86E4-70A02C8F5709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailMan.Tests", "MailMan.Tests\MailMan.Tests.csproj", "{08EF4C74-45FA-402D-AC47-50EDFD14C1B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{640D3B3C-434D-4F2D-A841-C0363CA4C9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD5B9B8A-6720-4691-86E4-70A02C8F5709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5B9B8A-6720-4691-86E4-70A02C8F5709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5B9B8A-6720-4691-86E4-70A02C8F5709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5B9B8A-6720-4691-86E4-70A02C8F5709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08EF4C74-45FA-402D-AC47-50EDFD14C1B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08EF4C74-45FA-402D-AC47-50EDFD14C1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08EF4C74-45FA-402D-AC47-50EDFD14C1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08EF4C74-45FA-402D-AC47-50EDFD14C1B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

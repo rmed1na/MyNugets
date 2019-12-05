@@ -342,3 +342,4 @@ healthchecksdb
 # Test folders
 mssql.dbman.Tests/
 nuget.exe
+MailMan.Tests/

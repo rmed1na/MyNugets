@@ -17,6 +17,7 @@ Updated tlogs nuget package version</releaseNotes>
       <group targetFramework=".NETFramework4.6.1">
         <dependency id="tlogs" version="1.0.4"/>
       </group>
+      <group targetFramework="netcore"/>
     </dependencies>
     <repository type="git" url="https://github.com/rmed1na/MyNugets/tree/master/mssql.dbman"/>
   </metadata>
