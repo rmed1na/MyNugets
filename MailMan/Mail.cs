@@ -36,7 +36,7 @@ namespace MailMan
         {
             bool success = false;
             MailMessage mailMessage = new MailMessage();
-            Attachment attachment;
+            Attachment attachment = null;
             try
             {
                 if (!smtp.UseDefaultCredentials)

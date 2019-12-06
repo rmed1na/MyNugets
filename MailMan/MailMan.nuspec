@@ -1,20 +1,21 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>MailMan</id>
-    <version>1.1.0</version>
-    <title>MailMan</title>
+    <id>MailMain</id>
+    <version>1.1.1</version>
+    <title>Mail Management Library (SMTP)</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This library helps on email sending (supports HTML) by SMTP</description>
-    <releaseNotes>Initial</releaseNotes>
+    <releaseNotes>Added Github repo</releaseNotes>
     <copyright>Copyright 2019</copyright>
-    <tags>mail email outlook sendmail correo smtp smtpserver mailserver mailing recipients</tags>
+    <tags>mail email outlook sendmail mailsend smtp smtpserver mailserver mailing</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.6.1">
-        <dependency id="tlogs" version="1.3.4"/>
+        <dependency id="tlogs" version="1.0.4"/>
       </group>
     </dependencies>
+    <repository type="git" url="https://github.com/rmed1na/MyNugets/tree/master/MailMan"/>
   </metadata>
 </package>
