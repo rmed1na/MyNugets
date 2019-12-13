@@ -109,7 +109,10 @@ namespace mssql.dbman
                     Print($"Executed sql statement: {query}");
             } catch (SqlException ex)
             {
-                Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
+                if (this.debugMode)
+                    Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber} | {query}", true);
+                else
+                    Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
             }
             finally
             {
