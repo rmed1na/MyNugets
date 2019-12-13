@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>mssql.dbman</id>
-    <version>1.7.4</version>
+    <version>1.8.4</version>
     <title>Sql Server Data Manager</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This library handles data from Sql Server Databases</description>
-    <releaseNotes>Added query printing on WriteData method if debugMode property is set to true</releaseNotes>
+    <releaseNotes>Added query printing on GetData method if debugMode property is set to true</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>mssql db sqlserver sql data datamanager mssqldb database sqlconsole dbconsole</tags>
     <dependencies>
