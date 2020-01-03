@@ -70,7 +70,7 @@ namespace mssql.dbman
             {
                 if (newScope)
                     this.conn.Open();
-                
+
                 da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.CommandTimeout = timeout;
                 da.Fill(dt);
