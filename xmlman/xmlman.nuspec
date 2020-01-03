@@ -2,14 +2,15 @@
 <package >
   <metadata>
     <id>xmlman</id>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <title>Xml File Manager</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This library manages to create, read and modify xml files</description>
-    <releaseNotes>Initial</releaseNotes>
+    <releaseNotes>Added summary to methods and properties.
+    Changed innerText param to optional on CreateNode method.</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>xml xmlmanager xmlfile node xmlnode</tags>
     <dependencies>
