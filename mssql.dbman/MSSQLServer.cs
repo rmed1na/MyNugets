@@ -62,7 +62,14 @@ namespace mssql.dbman
             return success;
         }
 
-        public DataTable GetData(string query, bool newScope = true)
+        /// <summary>
+        /// Retrieves a results on a virtual table (System.Data.DataTable).
+        /// </summary>
+        /// <param name="query">SQL script to run.</param>
+        /// <param name="newScope">Optional: Specifies if a new connection should be opened.</param>
+        /// <param name="autoConnect">Optional: Specifies if automatically open a new connection if current state is closed upon method call.</param>
+        /// <returns>DataTable</returns>
+        public DataTable GetData(string query, bool newScope = true, bool autoConnect = true)
         {
             DataTable dt = new DataTable();
             SqlDataAdapter da;
@@ -71,6 +78,9 @@ namespace mssql.dbman
                 if (newScope)
                     this.conn.Open();
 
+                if (autoConnect & conn.State == ConnectionState.Closed & newScope)
+                    this.conn.Open();
+                
                 da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.CommandTimeout = timeout;
                 da.Fill(dt);
