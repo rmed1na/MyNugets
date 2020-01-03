@@ -75,12 +75,10 @@ namespace mssql.dbman
             SqlDataAdapter da;
             try
             {
+                if (autoConnect & conn.State == ConnectionState.Closed)
+                    SetConnection();
                 if (newScope)
                     this.conn.Open();
-
-                if (autoConnect & conn.State == ConnectionState.Closed & newScope)
-                    this.conn.Open();
-                
                 da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.CommandTimeout = timeout;
                 da.Fill(dt);

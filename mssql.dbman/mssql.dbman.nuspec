@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>mssql.dbman</id>
-    <version>1.9.5</version>
+    <version>1.9.6</version>
     <title>Sql Server Data Manager</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
