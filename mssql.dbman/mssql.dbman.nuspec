@@ -15,6 +15,7 @@
     <dependencies>
       <group targetFramework=".NETFramework4.6.1">
         <dependency id="tlogs" version="1.0.4"/>
+        <dependency id="System.Data.SqlClient" version="4.8.0"/>
       </group>
       <group targetFramework="netcore"/>
     </dependencies>

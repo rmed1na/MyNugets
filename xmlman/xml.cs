@@ -94,7 +94,7 @@ namespace xmlman
             {
                 Print($"Error creating xml file: {ex.Message} | {ex.HResult}", true);
             }
-        }
+        }si 
 
         /// <summary>
         /// Creates a new node on the xml file.
