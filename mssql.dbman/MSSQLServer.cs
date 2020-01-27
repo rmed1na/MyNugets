@@ -13,19 +13,19 @@ namespace mssql.dbman
     public class MSSQLServer
     {
         private SqlConnection conn = new SqlConnection();
-        public int timeout { get; set; }
-        public string server { get; set; }
-        public string database { get; set; }
-        public string user { get; set; }
-        public string password { get; set; }
-        public string output { get; set; }
+        public int Timeout { get; set; }
+        public string Server { get; set; }
+        public string Database { get; set; }
+        public string User { get; set; }
+        public string Password { get; set; }
+        public string Output { get; set; }
         private Int64 identity_scope { get; set; }
-        public bool debugMode { get; set; }
+        public bool DebugMode { get; set; }
         private bool writeLogs { get; set; } = false;
         private Log log;
         public MSSQLServer(int timeout = 600, Log log = null)
         {
-            this.timeout = timeout;
+            this.Timeout = timeout;
 
             if (log != null)
             {
@@ -34,6 +34,14 @@ namespace mssql.dbman
             }
         }
 
+        /// <summary>
+        /// Establishes a connection to a Microsoft Sql Server Database
+        /// </summary>
+        /// <param name="server">Sets mssql the server name</param>
+        /// <param name="database">Sets the mssql database name</param>
+        /// <param name="user">Sets the mssql username</param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public bool SetConnection(string server = null, string database = null, string user = null, string password = null)
         {
             bool success = false;
@@ -41,19 +49,19 @@ namespace mssql.dbman
             {
                 if (server == null || database == null || user == null || password == null)
                 {
-                    server = this.server;
-                    database = this.database;
-                    user = this.user;
-                    password = this.password;
+                    server = this.Server;
+                    database = this.Database;
+                    user = this.User;
+                    password = this.Password;
                 }
                 conn.ConnectionString = $"Server={server}; Database={database}; User ID={user}; Password={password}";
                 conn.Open();
                 success = true;
-                Print($"Successful connection established with sql client: {conn.ConnectionString}");
+                Print($"Successful connection established with sql database: {conn.ConnectionString}");
             } catch (SqlException ex)
             {
                 success = false;
-                Print($"Sql client connection error: {ex.Message} | {ex.HResult}", true);
+                Print($"Sql connection error: {ex.Message} | {conn.ConnectionString} | {ex.HResult}", true);
             }
             finally
             {
@@ -80,19 +88,19 @@ namespace mssql.dbman
                 if (newScope)
                     this.conn.Open();
                 da = new SqlDataAdapter(query, conn);
-                da.SelectCommand.CommandTimeout = timeout;
+                da.SelectCommand.CommandTimeout = Timeout;
                 da.Fill(dt);
                 da.Dispose();
                 da = null;
 
-                if (debugMode)
+                if (DebugMode)
                     Print($"Executed sql statement: {query}");
 
                 if (newScope)
                     conn.Close();
             } catch (SqlException ex)
             {
-                if (this.debugMode)
+                if (this.DebugMode)
                     Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber} | {query}", true);
                 else
                     Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
@@ -112,15 +120,15 @@ namespace mssql.dbman
             {
                 SqlCommand command = new SqlCommand(query, this.conn);
                 conn.Open();
-                command.CommandTimeout = this.timeout;
+                command.CommandTimeout = this.Timeout;
                 command.ExecuteScalar();
                 success = true;
 
-                if (debugMode)
+                if (DebugMode)
                     Print($"Executed sql statement: {query}");
             } catch (SqlException ex)
             {
-                if (this.debugMode)
+                if (this.DebugMode)
                     Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber} | {query}", true);
                 else
                     Print($"Sql exception on query execution: {ex.Message} | {ex.HResult} | Line: {ex.LineNumber}", true);
@@ -205,7 +213,7 @@ namespace mssql.dbman
                             this.conn.Open();
                             using (SqlBulkCopy bcopy = new SqlBulkCopy(conn))
                             {
-                                bcopy.BulkCopyTimeout = this.timeout;
+                                bcopy.BulkCopyTimeout = this.Timeout;
                                 bcopy.DestinationTableName = destinationTable;
 
                                 if (columnNamesMatch)

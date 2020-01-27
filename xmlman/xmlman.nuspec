@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>xmlman</id>
-    <version>1.2.1</version>
+    <version>1.2.3</version>
     <title>Xml File Manager</title>
     <authors>ro.medina</authors>
     <owners>ro.medina</owners>
