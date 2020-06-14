@@ -37,7 +37,7 @@ namespace TextLogs
                 else
                 {
                     File.Delete($@"{this.dir}\{this.filename}");
-                    File.Create($@"{this.dir}\{this.filename}");
+                    File.Create($@"{this.dir}\{this.filename}").Dispose();
                 }
 
                 if (this.autoDeleteLogs)
